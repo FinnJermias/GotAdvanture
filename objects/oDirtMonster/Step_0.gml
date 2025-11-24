@@ -5,14 +5,25 @@ if(oPlayer.isAlive = false)
 	solid = false
 }
 
-if(isAlive = true)
+if(knockbackTimer > 0)
 {
-	xsp = moveSpd //give xsp a value
+	isMoving = false
+	if(x > oPlayer.x)
+	{
+		xsp = knockbackX; //calculate position	within player and the enemy, then put the value on the power
+	}
+	else
+	{
+		xsp = -knockbackX;
+	}
+	ysp = -knockbackY;	
+	knockbackTimer--;
 }
 else
 {
-	xsp = 0
-}
+	xsp = moveSpd //give xsp a value
+}	
+
 move_and_collide(xsp, ysp, oPlayer.platformGround) //make the object can move and collide with platform/wall
 #endregion
 
@@ -85,5 +96,5 @@ if(place_meeting(x + sign(xsp), y, oPlayer.platformGround))
 	}
 }*/
 
-
+//KnockbackStep(oDirtMonster, oPlayer)
 #endregion

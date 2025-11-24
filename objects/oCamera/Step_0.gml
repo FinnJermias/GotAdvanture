@@ -10,37 +10,52 @@ if(target == oPlayer)
 	}
 	else
 	{
-		xTo = target.x
+		xTo = target.x;
 	}
+	
+	if(oPlayer.isGrounded = true)
+	{
+		currentPlayerPosY = target.y;
+		yTo = target.y;
+		y += (yTo - y)/20; //Smooth Camera	
+	}
+	else if(oPlayer.isGrounded = false && target.y < currentPlayerPosY - 100)
+	{
+		yTo = target.y;
+		y += (yTo - y)/20; //Smooth Camera
+	}
+	//if the statement is just (isGrounded = false) it does nothing to the y, make the camera.y stay still
 }
 else
 {
-	xTo = target.x
+	xTo = target.x;
 }
 
 
 x += (xTo - x)/20; //Smooth Camera(move more slower when it reaches the target until stop(camera.x == target.x))
 
-xpos = x - camWidth/2 //Make camera.x in the middle(640/2)
-xpos = clamp(xpos, 0, room_width-camera_get_view_width(view_camera[0])) //Make camera cannot overpass the border in the room
+xpos = x - camWidth/2; //Make camera.x in the middle(640/2)
+xpos = clamp(xpos, 0, room_width-camera_get_view_width(view_camera[0])); //Make camera cannot overpass the border in the room
 
 
-if(oPlayer.isGrounded = true)
-{
-	currentPlayerPosY = target.y;
-	yTo = target.y;
-	y += (yTo - y)/20 //Smooth Camera	
-}
-else if(oPlayer.isGrounded = false && target.y < currentPlayerPosY - 100)
-{
-	yTo = target.y;
-	y += (yTo - y)/20 //Smooth Camera
-}
-//if the statement is just (isGrounded = false) it does nothing to the y, make the camera.y stay still
-
-ypos = y - camHeight/2 //Make camera.y in the middle(360/2)
-ypos = clamp(ypos, 0, room_height-camera_get_view_height(view_camera[0]))
+ypos = y - camHeight/2; //Make camera.y in the middle(360/2)
+ypos = clamp(ypos, 0, room_height-camera_get_view_height(view_camera[0]));
 
 
 camera_set_view_pos(view_camera[0], xpos, ypos);
 	
+//Fullscreen
+/*if(keyboard_check_pressed(ord("F")))
+{
+	if(!isFullScreen)
+	{
+		isFullScreen = true;
+		window_set_fullscreen(true);
+	}
+	else
+	{
+		window_set_size(1280, 720);
+		isFullScreen = false;
+		window_set_fullscreen(false);
+	}
+}*/

@@ -13,11 +13,14 @@ jumpPower = 8 //jump
 DashTimer = 0
 dashPower = 20 //the xsp value while dashing
 dashAnimTimer = 0
+isDashLeft = false;
+isDashRight = false;
 
-isShooting = false
-bulletDirectionX = 0
-bulletDirectionY = 0
-isVerticalDash = false
+isShooting = false;
+bulletDirectionX = 0;
+bulletDirectionY = 0;
+bulletRotation = 0;
+isVerticalDash = false;
 
 isDashing = false //check if player currently dashing
 isKeyPress = false
@@ -25,14 +28,19 @@ isKeyPress = false
 isFacingLeft = false; //Check if the player facing left
 
 isMoving = true
-isAlive = true
-playerHealth = 3
+isAlive = true;
+playerHealth = 3;
 
-isGrounded = false //check if the player on the ground
-platformGround = [oPlatformEdge, oPlatformMiddle, oPlatformEdgeFull, oPlatformMiddleFull, oPlatformDiagonalDown, oPlatformDiagonalUp]
+isGrounded = false; //check if the player on the ground
+platformGround = [oPlatformEdge, oPlatformMiddle, oPlatformEdgeFull, oPlatformMiddleFull, oPlatformDiagonalDown, oPlatformDiagonalUp];
 jumpHangFrames = 4;
 jumpHangTimer = 0;
-isJumpMercy = false
+isJumpMercy = false;
 
 dashCooldown = 0;        // current cooldown timer
 dashCooldownMax = 60;    // 1 second cooldown (60 frames)
+
+knockbackX = 0;
+knockbackY = 0;
+knockbackTimer = 0;
+knocbacker = 0; //Object that Knockback the player

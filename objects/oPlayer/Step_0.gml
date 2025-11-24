@@ -1,39 +1,29 @@
-
 #region Gravity
-if(isDashing = false)
+if(isDashing = false && isMoving = true)
 {	
-	
-		if(isGrounded = false && dashAnimTimer > 0)
-		{
-			ysp = 0 //make player stop after dash
-			ysp += grav //Gravity
-		}
-		else if(isGrounded = false)
-		{
-			ysp += grav
-		}
-		xsp = 0 //Reset xsp
-	}
-
+	ysp += grav; //Gravity
+	xsp = 0; //Reset xsp
+}
 #endregion
 
+#region LOGIC
 if(playerHealth <= 0)
 {
-	isAlive = false
+	isAlive = false;
+	if(isGrounded = true)
+	{
+		isMoving = false;
+	}
 }
+#endregion
 
-if(isAlive = false)
+if(isAlive = true)
 {
-	sprite_index = sDead
-	solid = false
-}
-
 #region MOVEMENT
 #region Move
-
-if(isMoving = true && isAlive = true)
+if(isMoving = true)
 {
-	if keyboard_check(ord("D")) || keyboard_check(vk_right) || keyboard_check(ord("L"))
+	if (keyboard_check(ord("D")) || keyboard_check(vk_right))
 	{
 		if isDashing = false
 		{
@@ -46,7 +36,7 @@ if(isMoving = true && isAlive = true)
 		xPrev = x
 	}
 
-	if keyboard_check(ord("A")) || keyboard_check(vk_left) || keyboard_check(ord("J"))
+	if (keyboard_check(ord("A")) || keyboard_check(vk_left))
 	{
 		if isDashing = false
 		{
@@ -82,7 +72,7 @@ if(isMoving = true && isAlive = true)
 }
 #endregion
 #region Jump
-if(keyboard_check_pressed(vk_space) && (isGrounded = true || isJumpMercy = true) && isAlive = true)
+if(keyboard_check_pressed(vk_space) && (isGrounded = true || isJumpMercy = true))
 {
 	ysp = -jumpPower //max jump power
 }
@@ -95,70 +85,104 @@ if(ysp < 0 && !keyboard_check(vk_space) && isDashing = false)
 	ysp = max(ysp, -jumpPower/2.5) //If let go of space, ysp will not be -2.5
 }
 #endregion
-#region Dash
+#region Dash and Shooting
 if (keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || keyboard_check_pressed(vk_lshift))
 && isDashing = false 
-&& isAlive = true
 && dashCooldown <= 0 // ← NEW: only dash if NOT cooling down
 {
 	dashCooldown = dashCooldownMax; // start cooldown
 
-	xsp = 0
-	ysp = 0
+	xsp = 0;
+	ysp = 0;
 	
-	isShooting = true
+	isShooting = true;
 	
-	isDashing = true
-	DashTimer = 4 //how long the steps to dash, less means more faster but much shorter
-	dashAnimTimer = 15 //dash Animation
+	isDashing = true;
+	DashTimer = 4; //how long the steps to dash, less means more faster but much shorter
+	dashAnimTimer = 15; //dash Animation
 	if keyboard_check(ord("D")) || keyboard_check(vk_right) || keyboard_check(ord("J"))
 	{
-		isKeyPress = true
-		xsp = dashPower //the xsp value while dashing
-		bulletDirectionX = -1
+		isDashRight = true
+		isKeyPress = true;
+		xsp = dashPower; //the xsp value while dashing
+		bulletDirectionX = -1;
+		bulletRotation = 0; //value for Rotation of the bullet
 		
 	}
 	else if keyboard_check(ord("A")) || keyboard_check(vk_left) || keyboard_check(ord("L")) 
 	{
-		isKeyPress = true
-		xsp = -dashPower
-		bulletDirectionX = 1
+		isDashLeft = true
+		isKeyPress = true;
+		xsp = -dashPower;
+		bulletDirectionX = 1;
+		bulletRotation = -180; //value for Rotation of the bullet
 	}
 	
 	if keyboard_check(ord("W")) || keyboard_check(vk_up) || keyboard_check(ord("K"))
 	{
-		isKeyPress = true
-		ysp = -dashPower
-		bulletDirectionY = 1
+		isKeyPress = true;
+		ysp = -dashPower;
+		bulletDirectionY = 1;
+
+		if(isDashRight = true)
+		{
+			bulletRotation = 45;
+			isDashRight = false;
+		}
+		else if(isDashLeft = true)
+		{
+			bulletRotation = 150;
+			isDashLeft = false;
+		}
+		else
+		{
+			bulletRotation = 90;
+		}
 		
 	}
 	else if keyboard_check(ord("S")) || keyboard_check(vk_down) || keyboard_check(ord("I"))
 	{
-		isKeyPress = true
-		ysp = dashPower
-		bulletDirectionY = -1
+		isKeyPress = true;
+		ysp = dashPower;
+		bulletDirectionY = -1;
+		
+		if(isDashRight = true)
+		{
+			bulletRotation = -45;
+			isDashRight = false;
+		}
+		else if(isDashLeft = true)
+		{
+			bulletRotation = -150;
+			isDashLeft = false;
+		}
+		else
+		{
+			bulletRotation = -90;
+		}
 	}
 	
 	if isKeyPress = false
 	{
+		bulletRotation = 0;
 		if(image_xscale = -1)
 		{
-			xsp = -dashPower
+			xsp = -dashPower;
 		}
 		else
 		{
-			xsp = dashPower	
+			xsp = dashPower;
 		}
 	}
-	isKeyPress = false
+	isKeyPress = false;
 }
 
 if(isShooting = true)
 {
-	instance_create_layer(x, y, "Instances", oBullet)
-	bulletDirectionX = 0
-	bulletDirectionY = 0
-	isShooting = false
+	instance_create_layer(x, y, "Instances", oBullet);
+	bulletDirectionX = 0;
+	bulletDirectionY = 0;
+	isShooting = false;
 }
 
 if isDashing = true //dash timer
@@ -220,6 +244,7 @@ else
 	}
 }
 
+//Make the player has a little bit of time to jump while leaving platform
 function JumpMercy()
 {
 	isJumpMercy = true
@@ -236,10 +261,6 @@ function JumpMercy()
 #endregion
 
 #region ANIMATION
-
-if (isAlive = true)
-{
-    
     if (dashAnimTimer > 0)
     {
        
@@ -298,12 +319,43 @@ if (isAlive = true)
             sprite_index = sPlayerJump;
         }
     }
+#endregion
+
+#region Knockback
+if(knockbackTimer > 0)
+{
+	isMoving = false
+	if(x > knocbacker.x)
+	{
+		//calculate position	within player and the enemy, then put the value on the power
+		xsp = (knockbackX * abs(x - oDirtMonster.x)) / 10; 
+	}
+	else
+	{
+		xsp = -(knockbackX * abs(x - oDirtMonster.x)) / 10;
+	}
+	if(knockbackTimer > 5)
+	{
+		ysp = -knockbackY;	
+	}
+	else
+	{
+		ysp += grav;
+	}
+	knockbackTimer--;
 }
-
+else
+{
+	isMoving = true;
+	knocbacker = 0;
+}
 #endregion
-
-
-#endregion
+}
+else
+{
+	sprite_index = sDead
+	solid = false
+}
 
 #region Collect
 if (place_meeting(x, y, oGems)) {
