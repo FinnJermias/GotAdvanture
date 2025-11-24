@@ -328,11 +328,11 @@ if(knockbackTimer > 0)
 	if(x > knocbacker.x)
 	{
 		//calculate position	within player and the enemy, then put the value on the power
-		xsp = (knockbackX * abs(x - oDirtMonster.x)) / 10; 
+		xsp = (knockbackX * abs(x - knocbacker.x)) / 10; 
 	}
 	else
 	{
-		xsp = -(knockbackX * abs(x - oDirtMonster.x)) / 10;
+		xsp = -(knockbackX * abs(x - knocbacker.x)) / 10;
 	}
 	if(knockbackTimer > 5)
 	{
