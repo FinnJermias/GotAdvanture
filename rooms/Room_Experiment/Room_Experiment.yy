@@ -1833,7 +1833,7 @@
   "name":"Room_Experiment",
   "parent":{
     "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "path":"folders/Objects/Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

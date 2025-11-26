@@ -40,6 +40,7 @@ jumpHangFrames = 4;
 jumpHangTimer = 0;
 isJumpMercy = false;
 
+canDash = true
 dashCooldown = 0;        // current cooldown timer
 dashCooldownMax = 60;    // 1 second cooldown (60 frames)
 

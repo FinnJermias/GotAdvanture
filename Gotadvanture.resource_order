@@ -2,6 +2,7 @@
   "FolderOrderSettings":[
     {"name":"Brick","order":12,"path":"folders/Objects/Brick.yy",},
     {"name":"Water","order":15,"path":"folders/Objects/Water.yy",},
+    {"name":"Rooms","order":29,"path":"folders/Objects/Rooms.yy",},
     {"name":"sPlayer","order":49,"path":"folders/Sprites/sPlayer.yy",},
   ],
   "ResourceOrderSettings":[
