@@ -1,4 +1,5 @@
-window_set_fullscreen(true);
+//window_set_fullscreen(true);
+window_set_size(1280, 720);
 
 var w = display_get_width();
 var h = display_get_height();

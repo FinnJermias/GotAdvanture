@@ -22,5 +22,8 @@ knockbackX = 0;
 knockbackY = 0;
 knockbackTimer = 0;
 
+dirtMonsterHealth = 2;
 isMoving = true;
-isAlive = true; //Check if the object alive(currently no use)
+isAlive = true; //Check if the object alive
+canBeDamagedTimer = 0;
+canBeDamagedTimerRate = 0;
