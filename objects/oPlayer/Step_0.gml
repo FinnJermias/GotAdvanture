@@ -82,26 +82,19 @@ if(isMoving = true)
 #region Jump
 if(keyboard_check_pressed(vk_space) && (isGrounded = true || isJumpMercy = true))
 {
-	//canDash = false;
 	ysp = -jumpPower //max jump power
 }
 else
 {
-	//canDash = true;
 	yPrev = y
 }
 if(ysp < 0 && !keyboard_check(vk_space) && isDashing = false)
 {
-	//canDash = true
-	ysp = max(ysp, -jumpPower/2.5) //If let go of space, ysp will not be -2.5
-}
-else
-{
-	//canDash = false
+	ysp = max(ysp, -jumpPower/2.5); //If let go of space, ysp will not be -2.5
 }
 #endregion
 #region Dash and Shooting
-if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || keyboard_check_pressed(vk_lshift)) && canDash = true)
+if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || keyboard_check_pressed(vk_lshift)))
 && isDashing = false 
 && dashCooldown <= 0 // ← NEW: only dash if NOT cooling down
 {
@@ -136,7 +129,14 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 	if keyboard_check(ord("W")) || keyboard_check(vk_up) || keyboard_check(ord("K"))
 	{
 		isKeyPress = true;
-		ysp = -dashPower;
+		if(keyboard_check(vk_space))
+		{
+			ysp = -dashPower / 2.5;
+		}
+		else
+		{
+			ysp = -dashPower;
+		}
 		bulletDirectionY = 1;
 
 		if(isDashRight = true)
@@ -158,7 +158,15 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 	else if keyboard_check(ord("S")) || keyboard_check(vk_down) || keyboard_check(ord("I"))
 	{
 		isKeyPress = true;
-		ysp = dashPower;
+		if(keyboard_check(vk_space))
+		{
+			ysp = dashPower / 2.5;
+		}
+		else
+		{
+			ysp = dashPower;
+		}
+		
 		bulletDirectionY = -1;
 		
 		if(isDashRight = true)
