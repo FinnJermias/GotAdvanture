@@ -1,5 +1,10 @@
-camWidth = 640; //Camera Width
-camHeight = 360; //Camera Height
+zoom = 40;
+
+camWidth = 16 * zoom; //Camera Width 640
+camHeight = 9 * zoom; //Camera Height 360
+
+camWidthTarget = 16;
+camHeightTarget = 9;
 
 target = oPlayer; //Camera Target
 

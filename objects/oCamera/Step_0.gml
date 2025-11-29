@@ -31,7 +31,6 @@ else
 	xTo = target.x;
 }
 
-
 x += (xTo - x)/20; //Smooth Camera(move more slower when it reaches the target until stop(camera.x == target.x))
 
 xpos = x - camWidth/2; //Make camera.x in the middle(640/2)
@@ -41,21 +40,8 @@ xpos = clamp(xpos, 0, room_width-camera_get_view_width(view_camera[0])); //Make 
 ypos = y - camHeight/2; //Make camera.y in the middle(360/2)
 ypos = clamp(ypos, 0, room_height-camera_get_view_height(view_camera[0]));
 
+camWidth += ((camWidthTarget * zoom) - camWidth) / 20;
+camHeight += ((camHeightTarget * zoom) - camHeight) / 20;
 
 camera_set_view_pos(view_camera[0], xpos, ypos);
-	
-//Fullscreen
-/*if(keyboard_check_pressed(ord("F")))
-{
-	if(!isFullScreen)
-	{
-		isFullScreen = true;
-		window_set_fullscreen(true);
-	}
-	else
-	{
-		window_set_size(1280, 720);
-		isFullScreen = false;
-		window_set_fullscreen(false);
-	}
-}*/
+camera_set_view_size(view_camera[0], camWidth, camHeight);

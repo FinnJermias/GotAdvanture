@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"Knockback",
+  "%Name":"PlayerLogic",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Knockback",
+  "name":"PlayerLogic",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

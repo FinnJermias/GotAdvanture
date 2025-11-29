@@ -32,7 +32,7 @@ isMoving = true
 isAlive = true;
 playerHealth = 3;
 canBeDamagedTimer = 0;
-canBeDamagedTimerRate = 0.5; //prevent the player getting damaged too fast
+canBeDamagedTimerRate = 15; //prevent the player getting damaged too fast
 
 isGrounded = false; //check if the player on the ground
 platformGround = [oPlatformEdge, oPlatformMiddle, oPlatformEdgeFull, oPlatformMiddleFull, oPlatformDiagonalDown, oPlatformDiagonalUp];

@@ -18,15 +18,15 @@ if(playerHealth <= 0)
 
 function DecreaseHealth()
 {
-	if(canBeDamagedTimer > 0)
-	{
-		canBeDamagedTimer--;
-	}
-	else
+	if(canBeDamagedTimer <= 0)
 	{
 		canBeDamagedTimer = canBeDamagedTimerRate;
 		playerHealth -= 1;
 	}
+}
+if(canBeDamagedTimer > 0)
+{
+	canBeDamagedTimer--;
 }
 
 //Unstuck Player(Cheat)
@@ -387,6 +387,7 @@ else
 		
 		isGameOver = true;
 		instance_create_layer(vx + vw/2, vy +vh/2, "Instances_UI", oGameOver);	
+		oCamera.target = oGameOver;
 	}
 	
 	if(keyboard_check_pressed(vk_anykey))
