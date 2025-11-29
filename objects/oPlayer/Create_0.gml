@@ -27,9 +27,12 @@ isKeyPress = false
 
 isFacingLeft = false; //Check if the player facing left
 
+isGameOver = false
 isMoving = true
 isAlive = true;
 playerHealth = 3;
+canBeDamagedTimer = 0;
+canBeDamagedTimerRate = 0.5; //prevent the player getting damaged too fast
 
 isGrounded = false; //check if the player on the ground
 platformGround = [oPlatformEdge, oPlatformMiddle, oPlatformEdgeFull, oPlatformMiddleFull, oPlatformDiagonalDown, oPlatformDiagonalUp];
@@ -37,6 +40,7 @@ jumpHangFrames = 4;
 jumpHangTimer = 0;
 isJumpMercy = false;
 
+canDash = true
 dashCooldown = 0;        // current cooldown timer
 dashCooldownMax = 60;    // 1 second cooldown (60 frames)
 

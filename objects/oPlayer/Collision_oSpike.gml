@@ -1,2 +1,3 @@
 knocbacker = oSpike;
-playerHealth -= 1
+KnocbackValue(1, 5, 10);
+DecreaseHealth();

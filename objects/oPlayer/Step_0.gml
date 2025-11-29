@@ -15,6 +15,26 @@ if(playerHealth <= 0)
 		isMoving = false;
 	}
 }
+
+function DecreaseHealth()
+{
+	if(canBeDamagedTimer > 0)
+	{
+		canBeDamagedTimer--;
+	}
+	else
+	{
+		canBeDamagedTimer = canBeDamagedTimerRate;
+		playerHealth -= 1;
+	}
+}
+
+//Unstuck Player(Cheat)
+if(keyboard_check_pressed(ord("U")))
+{
+	ysp = 0;
+	y -= 50;
+}
 #endregion
 
 if(isAlive = true)
@@ -57,36 +77,31 @@ if(isMoving = true)
 	{
 		image_xscale = 1
 	}
-
-	//Facing up and down
-	if keyboard_check(ord("W")) || keyboard_check(vk_up)
-	{
-		//Look Up
-	}
-
-
-	if keyboard_check(ord("S")) || keyboard_check(vk_down)
-	{
-		//look down
-	}
 }
 #endregion
 #region Jump
 if(keyboard_check_pressed(vk_space) && (isGrounded = true || isJumpMercy = true))
 {
+	//canDash = false;
 	ysp = -jumpPower //max jump power
 }
 else
 {
+	//canDash = true;
 	yPrev = y
 }
 if(ysp < 0 && !keyboard_check(vk_space) && isDashing = false)
 {
+	//canDash = true
 	ysp = max(ysp, -jumpPower/2.5) //If let go of space, ysp will not be -2.5
+}
+else
+{
+	//canDash = false
 }
 #endregion
 #region Dash and Shooting
-if (keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || keyboard_check_pressed(vk_lshift))
+if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || keyboard_check_pressed(vk_lshift)) && canDash = true)
 && isDashing = false 
 && dashCooldown <= 0 // ← NEW: only dash if NOT cooling down
 {
@@ -328,11 +343,11 @@ if(knockbackTimer > 0)
 	if(x > knocbacker.x)
 	{
 		//calculate position	within player and the enemy, then put the value on the power
-		xsp = (knockbackX * abs(x - oDirtMonster.x)) / 10; 
+		xsp = (knockbackX * abs(x - knocbacker.x)) / 10; 
 	}
 	else
 	{
-		xsp = -(knockbackX * abs(x - oDirtMonster.x)) / 10;
+		xsp = -(knockbackX * abs(x - knocbacker.x)) / 10;
 	}
 	if(knockbackTimer > 5)
 	{
@@ -353,8 +368,24 @@ else
 }
 else
 {
-	sprite_index = sDead
-	solid = false
+	sprite_index = sDead;
+	solid = false;
+	if(isGameOver = false)
+	{
+		var vx = camera_get_view_x(view_camera[0]); //grab the x value of viewport 0
+		var vy = camera_get_view_y(view_camera[0]); //grab the y value of viewport 0
+		var vw = camera_get_view_width(view_camera[0]); //grab the viewport width value
+		var vh = camera_get_view_height(view_camera[0]); //grab the viewport height value
+		
+		isGameOver = true;
+		instance_create_layer(vx + vw/2, vy +vh/2, "Instances_UI", oGameOver);	
+	}
+	
+	if(keyboard_check_pressed(vk_anykey))
+	{
+		isGameOver = false;
+		room_restart();
+	}
 }
 
 #region Collect
