@@ -106,6 +106,7 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 	isShooting = true;
 	
 	isDashing = true;
+	layer_set_visible("Effect_ScreenShake", true); //Apply Screen Shake Layer
 	DashTimer = 4; //how long the steps to dash, less means more faster but much shorter
 	dashAnimTimer = 15; //dash Animation
 	if keyboard_check(ord("D")) || keyboard_check(vk_right) || keyboard_check(ord("J"))
@@ -325,6 +326,7 @@ function JumpMercy()
     }
     else
     {
+		layer_set_visible("Effect_ScreenShake", false); //Deactivate Screen Shake Layer
         // Idle / Move
         if (xPrev != x)
         {

@@ -15,4 +15,7 @@ currentPlayerPosY = target.y; //target y position while grounded
 xpos = 0; //camera x position
 ypos = 0; //camera y position
 
+cameraShakeTimer = 0;
+cameraShakeTimerRate = 15;
+
 isFullScreen = false;
