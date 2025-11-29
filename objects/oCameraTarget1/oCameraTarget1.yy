@@ -6,8 +6,8 @@
   "name":"oCameraTarget1",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"CameraTarget",
+    "path":"folders/Objects/CameraTarget.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -27,7 +27,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sCameraPreview",
+    "path":"sprites/sCameraPreview/sCameraPreview.yy",
+  },
   "spriteMaskId":null,
   "visible":false,
 }

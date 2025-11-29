@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"oCameraTarget1Exit",
+  "%Name":"oCameraTargetExit",
   "eventList":[],
   "managed":true,
-  "name":"oCameraTarget1Exit",
+  "name":"oCameraTargetExit",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",

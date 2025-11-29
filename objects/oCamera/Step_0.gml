@@ -29,6 +29,8 @@ if(target == oPlayer)
 else
 {
 	xTo = target.x;
+	yTo = target.y;
+	y += (yTo - y)/20; //Smooth Camera
 }
 
 x += (xTo - x)/20; //Smooth Camera(move more slower when it reaches the target until stop(camera.x == target.x))
@@ -40,8 +42,8 @@ xpos = clamp(xpos, 0, room_width-camera_get_view_width(view_camera[0])); //Make 
 ypos = y - camHeight/2; //Make camera.y in the middle(360/2)
 ypos = clamp(ypos, 0, room_height-camera_get_view_height(view_camera[0]));
 
-camWidth += ((camWidthTarget * zoom) - camWidth) / 20;
-camHeight += ((camHeightTarget * zoom) - camHeight) / 20;
+camWidth += (camWidthTarget - camWidth) / 20;
+camHeight += (camHeightTarget - camHeight) / 20;
 
 camera_set_view_pos(view_camera[0], xpos, ypos);
 camera_set_view_size(view_camera[0], camWidth, camHeight);

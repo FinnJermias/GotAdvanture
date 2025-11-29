@@ -1,6 +1,7 @@
 {
   "FolderOrderSettings":[
     {"name":"Brick","order":12,"path":"folders/Objects/Brick.yy",},
+    {"name":"CameraTarget","order":29,"path":"folders/Objects/CameraTarget.yy",},
     {"name":"Water","order":15,"path":"folders/Objects/Water.yy",},
     {"name":"Rooms","order":4,"path":"folders/Rooms.yy",},
     {"name":"Scripts","order":1,"path":"folders/Scripts.yy",},
@@ -14,9 +15,7 @@
     {"name":"oBox","order":6,"path":"objects/oBox/oBox.yy",},
     {"name":"oBullet","order":5,"path":"objects/oBullet/oBullet.yy",},
     {"name":"oCamera","order":9,"path":"objects/oCamera/oCamera.yy",},
-    {"name":"oCameraPreview","order":10,"path":"objects/oCameraPreview/oCameraPreview.yy",},
-    {"name":"oCameraTarget1Enter","order":1,"path":"objects/oCameraTarget1Enter/oCameraTarget1Enter.yy",},
-    {"name":"oCameraTarget1Exit","order":11,"path":"objects/oCameraTarget1Exit/oCameraTarget1Exit.yy",},
+    {"name":"oCameraTargetExit","order":11,"path":"objects/oCameraTargetExit/oCameraTargetExit.yy",},
     {"name":"oController","order":26,"path":"objects/oController/oController.yy",},
     {"name":"oDirtMonster","order":8,"path":"objects/oDirtMonster/oDirtMonster.yy",},
     {"name":"oExitDoor","order":7,"path":"objects/oExitDoor/oExitDoor.yy",},
