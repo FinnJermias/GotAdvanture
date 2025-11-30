@@ -1,13 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"oCameraTargetExit",
+  "%Name":"oFlatSpike",
   "eventList":[],
   "managed":true,
-  "name":"oCameraTargetExit",
+  "name":"oFlatSpike",
   "overriddenProperties":[],
   "parent":{
-    "name":"CameraTarget",
-    "path":"folders/Objects/CameraTarget.yy",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -26,11 +26,11 @@
   "properties":[],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
-  "solid":false,
+  "solid":true,
   "spriteId":{
-    "name":"sCameraAreaExit",
-    "path":"sprites/sCameraAreaExit/sCameraAreaExit.yy",
+    "name":"sFlatSpike",
+    "path":"sprites/sFlatSpike/sFlatSpike.yy",
   },
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

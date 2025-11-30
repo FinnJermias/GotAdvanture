@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"oCameraTargetExit",
+  "%Name":"oCameraTarget2",
   "eventList":[],
   "managed":true,
-  "name":"oCameraTargetExit",
+  "name":"oCameraTarget2",
   "overriddenProperties":[],
   "parent":{
     "name":"CameraTarget",
@@ -28,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sCameraAreaExit",
-    "path":"sprites/sCameraAreaExit/sCameraAreaExit.yy",
+    "name":"sCameraPreview",
+    "path":"sprites/sCameraPreview/sCameraPreview.yy",
   },
   "spriteMaskId":null,
   "visible":false,

@@ -5,7 +5,7 @@ if (p != noone)
 {
     if (keyboard_check_pressed(ord("g")) || keyboard_check_pressed(ord("G")))
 {
-    room_goto(Room2);
+    room_goto_next();
 }
 }
 
