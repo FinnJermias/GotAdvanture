@@ -28,6 +28,10 @@ function DecreaseHealth()
 		playerHealth -= 1;
 	}
 }
+function InstaKill()
+{
+	playerHealth = 0;
+}
 
 //Unstuck Player(Cheat)
 if(keyboard_check_pressed(ord("U")))
@@ -92,8 +96,12 @@ else
 }
 if(ysp < 0 && !keyboard_check(vk_space) && isDashing = false)
 {
+<<<<<<< HEAD
 	//canDash = true
 	ysp = max(ysp, -jumpPower/2.5) //If let go of space, ysp will not be -2.5
+=======
+	ysp = max(ysp, -jumpPower/2.5); //If let go of space, ysp will not be -2.5
+>>>>>>> 7191654 (LEVEL 5 and added a door indicator)
 }
 else
 {
@@ -101,7 +109,11 @@ else
 }
 #endregion
 #region Dash and Shooting
+<<<<<<< HEAD
 if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || keyboard_check_pressed(vk_lshift)) && canDash = true)
+=======
+if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || keyboard_check_pressed(vk_lshift)))
+>>>>>>> 7191654 (LEVEL 5 and added a door indicator)
 && isDashing = false 
 && dashCooldown <= 0 // ← NEW: only dash if NOT cooling down
 {
@@ -136,7 +148,14 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 	if keyboard_check(ord("W")) || keyboard_check(vk_up) || keyboard_check(ord("K"))
 	{
 		isKeyPress = true;
-		ysp = -dashPower;
+		if(keyboard_check(vk_space))
+		{
+			ysp = -dashPower / 2.5;
+		}
+		else
+		{
+			ysp = -dashPower;
+		}
 		bulletDirectionY = 1;
 
 		if(isDashRight = true)
@@ -158,7 +177,15 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 	else if keyboard_check(ord("S")) || keyboard_check(vk_down) || keyboard_check(ord("I"))
 	{
 		isKeyPress = true;
-		ysp = dashPower;
+		if(keyboard_check(vk_space))
+		{
+			ysp = dashPower / 2.5;
+		}
+		else
+		{
+			ysp = dashPower;
+		}
+		
 		bulletDirectionY = -1;
 		
 		if(isDashRight = true)
@@ -391,6 +418,8 @@ else
 #region Collect
 if (place_meeting(x, y, oGems)) {
     var gem = instance_place(x, y, oGems);
+	 // Increment counter
+    gemCount += 1;
     with (gem) instance_destroy();
 }
 #endregion
@@ -400,3 +429,15 @@ if (dashCooldown > 0)
 {
     dashCooldown--;
 }
+
+// interactable door
+show_prompt = false;
+
+show_prompt = (instance_place(x, y, oExitDoor) != noone) || (instance_place(x,y,oGiantSewer) != noone);
+
+if (show_prompt && keyboard_check_pressed(ord("G")))
+{
+    room_goto_next();
+}
+
+
