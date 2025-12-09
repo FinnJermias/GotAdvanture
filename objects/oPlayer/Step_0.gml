@@ -1,6 +1,7 @@
 #region GRAVITY
 if (!isDashing && isMoving)
 {
+	xsp = 0;
     ysp += grav;
 }
 #endregion
@@ -42,6 +43,9 @@ if(keyboard_check_pressed(ord("U")))
 }
 #endregion
 
+if(isAlive)
+{
+#region MOVEMENT
 #region Move
 if(isMoving = true)
 {
@@ -443,7 +447,4 @@ show_prompt = (instance_place(x, y, oExitDoor) != noone)
 if (show_prompt && keyboard_check_pressed(ord("G")))
 {
     dashCooldown--;
-}
-=======
-    room_goto_next();
 }
