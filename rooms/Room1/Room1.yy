@@ -853,7 +853,6 @@
     {"name":"inst_20B91B3C","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_71657796","path":"rooms/Room1/Room1.yy",},
 
-    {"name":"inst_5C7C0DAE","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_37BDCFBB","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_4E5300FF","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_431AC905","path":"rooms/Room1/Room1.yy",},
