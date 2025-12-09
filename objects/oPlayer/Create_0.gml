@@ -48,3 +48,8 @@ knockbackX = 0;
 knockbackY = 0;
 knockbackTimer = 0;
 knocbacker = 0; //Object that Knockback the player
+
+show_prompt = false;
+
+gemCount = 0;  // starts at 0
+

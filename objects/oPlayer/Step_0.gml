@@ -1,10 +1,10 @@
-#region Gravity
-if(isDashing = false && isMoving = true)
-{	
-	ysp += grav; //Gravity
-	xsp = 0; //Reset xsp
+#region GRAVITY
+if (!isDashing && isMoving)
+{
+    ysp += grav;
 }
 #endregion
+
 
 #region LOGIC
 if(playerHealth <= 0)
@@ -29,6 +29,11 @@ if(canBeDamagedTimer > 0)
 	canBeDamagedTimer--;
 }
 
+/*function InstaKill()
+{
+	playerHealth = 0;
+}*/
+
 //Unstuck Player(Cheat)
 if(keyboard_check_pressed(ord("U")))
 {
@@ -37,9 +42,6 @@ if(keyboard_check_pressed(ord("U")))
 }
 #endregion
 
-if(isAlive = true)
-{
-#region MOVEMENT
 #region Move
 if(isMoving = true)
 {
@@ -79,6 +81,7 @@ if(isMoving = true)
 	}
 }
 #endregion
+
 #region Jump
 if(keyboard_check_pressed(vk_space) && (isGrounded = true || isJumpMercy = true))
 {
@@ -89,11 +92,13 @@ else
 {
 	yPrev = y
 }
+
 if(ysp < 0 && !keyboard_check(vk_space) && isDashing = false)
 {
 	ysp = max(ysp, -jumpPower/2.5); //If let go of space, ysp will not be -2.5
 }
 #endregion
+
 #region Dash and Shooting
 if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || keyboard_check_pressed(vk_lshift)))
 && isDashing = false 
@@ -107,19 +112,19 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 	ysp = 0;
 	
 	isShooting = true;
-	
 	isDashing = true;
+
 	layer_set_visible("Effect_ScreenShake", true); //Apply Screen Shake Layer
 	DashTimer = 4; //how long the steps to dash, less means more faster but much shorter
 	dashAnimTimer = 15; //dash Animation
+
 	if keyboard_check(ord("D")) || keyboard_check(vk_right) || keyboard_check(ord("J"))
 	{
 		isDashRight = true
 		isKeyPress = true;
-		xsp = dashPower; //the xsp value while dashing
+		xsp = dashPower;
 		bulletDirectionX = -1;
-		bulletRotation = 0; //value for Rotation of the bullet
-		
+		bulletRotation = 0;
 	}
 	else if keyboard_check(ord("A")) || keyboard_check(vk_left) || keyboard_check(ord("L")) 
 	{
@@ -127,7 +132,7 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 		isKeyPress = true;
 		xsp = -dashPower;
 		bulletDirectionX = 1;
-		bulletRotation = -180; //value for Rotation of the bullet
+		bulletRotation = -180;
 	}
 	
 	if keyboard_check(ord("W")) || keyboard_check(vk_up) || keyboard_check(ord("K"))
@@ -141,6 +146,7 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 		{
 			ysp = -dashPower;
 		}
+
 		bulletDirectionY = 1;
 
 		if(isDashRight = true)
@@ -153,10 +159,7 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 			bulletRotation = 150;
 			isDashLeft = false;
 		}
-		else
-		{
-			bulletRotation = 90;
-		}
+		else bulletRotation = 90;
 		
 	}
 	else if keyboard_check(ord("S")) || keyboard_check(vk_down) || keyboard_check(ord("I"))
@@ -183,23 +186,14 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 			bulletRotation = -150;
 			isDashLeft = false;
 		}
-		else
-		{
-			bulletRotation = -90;
-		}
+		else bulletRotation = -90;
 	}
 	
 	if isKeyPress = false
 	{
 		bulletRotation = 0;
-		if(image_xscale = -1)
-		{
-			xsp = -dashPower;
-		}
-		else
-		{
-			xsp = dashPower;
-		}
+		if(image_xscale = -1) xsp = -dashPower;
+		else xsp = dashPower;
 	}
 	isKeyPress = false;
 }
@@ -212,7 +206,7 @@ if(isShooting = true)
 	isShooting = false;
 }
 
-if isDashing = true //dash timer
+if isDashing = true
 {
 	DashTimer--
 	if DashTimer <= 0
@@ -222,39 +216,35 @@ if isDashing = true //dash timer
 	}
 }
 
-if(dashAnimTimer > 0)
-{
-	dashAnimTimer--	
-}
+if(dashAnimTimer > 0) dashAnimTimer--;
 #endregion
 #endregion
 
 #region COLLISION
 if(isAlive = true)
 {
-	move_and_collide(xsp, ysp, platformGround)//make player can move, and can collide with array platformGround
+	move_and_collide(xsp, ysp, platformGround)
 }
 
-if(ysp >= 0)//check if the player fall
+if(ysp >= 0)
 {
-	if(place_meeting(x , y + 1, platformGround))//check if the player collide with platformGround 1 pixel below(y + 1)
+	if(place_meeting(x , y + 1, platformGround))
 	{
-		ysp = 0 //stop the gravity if meeting oPlatform
-		isGrounded = true 
-		jumpHangTimer = jumpHangFrames
+		ysp = 0;
+		isGrounded = true;
+		jumpHangTimer = jumpHangFrames;
 	}
 	else 
 	{
-		//unstuck player on the ground
-		if(place_meeting(x , y + ysp, platformGround) && isGrounded = false)//check if the player stop before (y + 1) in the ground
+		if(place_meeting(x , y + ysp, platformGround) && isGrounded = false)
 		{
-			y += 1 //move player 1 pixel down so it doesn't stuck in jump situation
-			isGrounded = true
+			y += 1;
+			isGrounded = true;
 		}
 		else
 		{
-			isGrounded = false
-			JumpMercy()
+			isGrounded = false;
+			JumpMercy();
 		}
 	}
 }
@@ -262,30 +252,22 @@ else
 {
 	if place_meeting(x , y + ysp, platformGround)
 	{
-		ysp = 0 //stop the gravity if meeting oPlatform
-		jumpHangTimer = jumpHangFrames
+		ysp = 0;
+		jumpHangTimer = jumpHangFrames;
 	}
 	else 
 	{
-		isGrounded = false
-		JumpMercy()
+		isGrounded = false;
+		JumpMercy();
 	}
 }
 
-//Make the player has a little bit of time to jump while leaving platform
 function JumpMercy()
 {
-	isJumpMercy = true
-	if(jumpHangTimer >= 0)
-	{
-		jumpHangTimer--
-	}
-	else
-	{
-		isJumpMercy = false
-	}	
+	isJumpMercy = true;
+	if(jumpHangTimer >= 0) jumpHangTimer--;
+	else isJumpMercy = false;
 }
-
 #endregion
 
 #region ANIMATION
@@ -346,29 +328,68 @@ function JumpMercy()
             sprite_index = sPlayerJump;
         }
     }
+
+/*if (dashAnimTimer > 0)
+{
+	if (keyboard_check(ord("W")) || keyboard_check(vk_up))
+	{
+		if (keyboard_check(ord("D")) || keyboard_check(vk_right))
+			sprite_index = sPlayerDashRightUp;
+		else if (keyboard_check(ord("A")) || keyboard_check(vk_left))
+			sprite_index = sPlayerDashLeftUp;
+		else
+			sprite_index = sPlayerDashUp;
+	}
+	else if (keyboard_check(ord("S")) || keyboard_check(vk_down))
+	{
+		if (keyboard_check(ord("D")) || keyboard_check(vk_right))
+			sprite_index = sPlayerDashRightDown;
+		else if (keyboard_check(ord("A")) || keyboard_check(vk_left))
+			sprite_index = sPlayerDashLeftDown;
+		else
+			sprite_index = sPlayerDashDown;
+	}
+	else if (keyboard_check(ord("D")) || keyboard_check(vk_right))
+	{
+		sprite_index = sPlayerDashRight;
+	}
+	else if (keyboard_check(ord("A")) || keyboard_check(vk_left))
+	{
+		sprite_index = sPlayerDashLeft;
+	}
+	else
+	{
+		if (image_xscale == -1) sprite_index = sPlayerDashLeft;
+		else sprite_index = sPlayerDashRight;
+	}
+}
+else
+{
+	if (xPrev != x)
+	{
+		sprite_index = sPlayerMove;
+		image_speed = 1;
+	}
+	else sprite_index = sPlayerIdle;
+
+	if (isGrounded = false) sprite_index = sPlayerJump;
+}*/
 #endregion
 
 #region Knockback
 if(knockbackTimer > 0)
 {
-	isMoving = false
+	isMoving = false;
 	if(x > knocbacker.x)
-	{
-		//calculate position	within player and the enemy, then put the value on the power
-		xsp = (knockbackX * abs(x - knocbacker.x)) / 10; 
-	}
+		xsp = (knockbackX * abs(x - knocbacker.x)) / 10;
 	else
-	{
 		xsp = -(knockbackX * abs(x - knocbacker.x)) / 10;
-	}
+	
 	if(knockbackTimer > 5)
-	{
-		ysp = -knockbackY;	
-	}
+		ysp = -knockbackY;
 	else
-	{
 		ysp += grav;
-	}
+
 	knockbackTimer--;
 }
 else
@@ -382,14 +403,16 @@ else
 {
 	sprite_index = sDead;
 	solid = false;
+
 	if(isGameOver = false)
 	{
-		var vx = camera_get_view_x(view_camera[0]); //grab the x value of viewport 0
-		var vy = camera_get_view_y(view_camera[0]); //grab the y value of viewport 0
-		var vw = camera_get_view_width(view_camera[0]); //grab the viewport width value
-		var vh = camera_get_view_height(view_camera[0]); //grab the viewport height value
+		var vx = camera_get_view_x(view_camera[0]);
+		var vy = camera_get_view_y(view_camera[0]);
+		var vw = camera_get_view_width(view_camera[0]);
+		var vh = camera_get_view_height(view_camera[0]);
 		
 		isGameOver = true;
+
 		instance_create_layer(vx + vw/2, vy +vh/2, "Instances_UI", oGameOver);	
 		oCamera.target = oGameOver;
 	}
@@ -404,12 +427,23 @@ else
 #region Collect
 if (place_meeting(x, y, oGems)) {
     var gem = instance_place(x, y, oGems);
+    gemCount += 1;
     with (gem) instance_destroy();
 }
 #endregion
 
 // DASH COOLDOWN COUNTER
-if (dashCooldown > 0)
+if (dashCooldown > 0) dashCooldown--;
+
+// interactable door
+show_prompt = false;
+show_prompt = (instance_place(x, y, oExitDoor) != noone) 
+           || (instance_place(x, y, oGiantSewer) != noone);
+
+if (show_prompt && keyboard_check_pressed(ord("G")))
 {
     dashCooldown--;
+}
+=======
+    room_goto_next();
 }

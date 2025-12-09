@@ -23,3 +23,8 @@ if (dashCooldown > 0)
     draw_text(25, 100, "Dash Cooldown");
 else
     draw_text(25, 100, "Dash Ready!");
+
+draw_sprite_ext(sGems, 0, 10, 150, 2, 2, 0, c_white, 1);
+
+draw_set_font(Big);// use your large font
+draw_text(10 + sprite_get_width(sGems) * 2 + 6, 175, "x" + string(gemCount));

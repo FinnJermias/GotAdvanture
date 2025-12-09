@@ -8,4 +8,3 @@ if (p != noone)
     room_goto_next();
 }
 }
-

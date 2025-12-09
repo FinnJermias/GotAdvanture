@@ -1,0 +1,1 @@
+oPlayer.VictoryTextMessagesVisible = true
