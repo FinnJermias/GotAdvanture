@@ -23,10 +23,8 @@
   ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
-    {"$GMIncludedFile":"","%Name":"Big Water Splash Sound Effect.m4a","CopyToMask":-1,"filePath":"datafiles","name":"Big Water Splash Sound Effect.m4a","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Big Water Splash Sound Effects.m4a","CopyToMask":-1,"filePath":"datafiles","name":"Big Water Splash Sound Effects.m4a","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Carton Jump.m4a","CopyToMask":-1,"filePath":"datafiles","name":"Carton Jump.m4a","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"Cartoon Jump.m4a","CopyToMask":-1,"filePath":"datafiles","name":"Cartoon Jump.m4a","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
   "LibraryEmitters":[],
@@ -80,7 +78,6 @@
     {"id":{"name":"Prologue","path":"rooms/Prologue/Prologue.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"Room2","path":"rooms/Room2/Room2.yy",},},
-    {"id":{"name":"Room3","path":"rooms/Room3/Room3.yy",},},
     {"id":{"name":"PlayerLogic","path":"scripts/PlayerLogic/PlayerLogic.yy",},},
     {"id":{"name":"_356_8_bit_chiptune_game_music_357518","path":"sounds/_356_8_bit_chiptune_game_music_357518/_356_8_bit_chiptune_game_music_357518.yy",},},
     {"id":{"name":"BGM___Give_Myself_To_You__Instrumental_","path":"sounds/BGM___Give_Myself_To_You__Instrumental_/BGM___Give_Myself_To_You__Instrumental_.yy",},},
@@ -142,7 +139,6 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"aRoom_Experiment","path":"rooms/aRoom_Experiment/aRoom_Experiment.yy",},},
-    {"roomId":{"name":"Room3","path":"rooms/Room3/Room3.yy",},},
     {"roomId":{"name":"Prologue","path":"rooms/Prologue/Prologue.yy",},},
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"roomId":{"name":"Room2","path":"rooms/Room2/Room2.yy",},},
