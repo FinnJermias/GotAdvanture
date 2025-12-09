@@ -19,7 +19,7 @@ if(target == oPlayer)
 		yTo = target.y;
 		y += (yTo - y)/20; //Smooth Camera	
 	}
-	else if(oPlayer.isGrounded = false && target.y < currentPlayerPosY - 100)
+	else if(oPlayer.isGrounded = false && (target.y < currentPlayerPosY - 100 || target.y > currentPlayerPosY + 50))
 	{
 		yTo = target.y;
 		y += (yTo - y)/20; //Smooth Camera

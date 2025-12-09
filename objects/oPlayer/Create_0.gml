@@ -8,7 +8,7 @@ xsp = 0
 ysp = 0
 
 playerSpd = 3 //speed
-jumpPower = 8 //jump
+jumpPower = 8.5 //jump
 
 DashTimer = 0
 dashPower = 20 //the xsp value while dashing

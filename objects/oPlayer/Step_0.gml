@@ -82,6 +82,7 @@ if(isMoving = true)
 #region Jump
 if(keyboard_check_pressed(vk_space) && (isGrounded = true || isJumpMercy = true))
 {
+	audio_play_sound(Carton_Jump, 1, false);
 	ysp = -jumpPower //max jump power
 }
 else
@@ -98,6 +99,8 @@ if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || key
 && isDashing = false 
 && dashCooldown <= 0 // ← NEW: only dash if NOT cooling down
 {
+	image_yscale = 0.6;
+	audio_play_sound(Big_Water_Splash_Sound_Effects, 0, false);
 	dashCooldown = dashCooldownMax; // start cooldown
 
 	xsp = 0;
@@ -214,6 +217,7 @@ if isDashing = true //dash timer
 	DashTimer--
 	if DashTimer <= 0
 	{
+		image_yscale = 1;
 		isDashing = false
 	}
 }
@@ -287,7 +291,6 @@ function JumpMercy()
 #region ANIMATION
     if (dashAnimTimer > 0)
     {
-       
         if (keyboard_check(ord("W")) || keyboard_check(vk_up))
         {
             if (keyboard_check(ord("D")) || keyboard_check(vk_right))
@@ -322,7 +325,6 @@ function JumpMercy()
             else
                 sprite_index = sPlayerDashRight;
         }
-
     }
     else
     {

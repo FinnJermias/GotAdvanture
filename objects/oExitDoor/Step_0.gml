@@ -3,7 +3,7 @@ var p = instance_place(x, y, oPlayer);
 
 if (p != noone)
 {
-    if (keyboard_check_pressed(ord("g")) || keyboard_check_pressed(ord("G")))
+    if (place_meeting(x, y, oPlayer))
 {
     room_goto_next();
 }
