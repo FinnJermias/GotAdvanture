@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"_356_8_bit_chiptune_game_music_357518",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":236.78401,
+  "exportDir":"",
+  "name":"_356_8_bit_chiptune_game_music_357518",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"_356_8_bit_chiptune_game_music_357518.mp3",
+  "volume":1.0,
+}

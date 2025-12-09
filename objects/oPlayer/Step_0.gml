@@ -1,6 +1,7 @@
 #region GRAVITY
 if (!isDashing && isMoving)
 {
+	xsp = 0;
     ysp += grav;
 }
 #endregion
@@ -18,20 +19,21 @@ if(playerHealth <= 0)
 
 function DecreaseHealth()
 {
-	if(canBeDamagedTimer > 0)
-	{
-		canBeDamagedTimer--;
-	}
-	else
+	if(canBeDamagedTimer <= 0)
 	{
 		canBeDamagedTimer = canBeDamagedTimerRate;
 		playerHealth -= 1;
 	}
 }
-function InstaKill()
+if(canBeDamagedTimer > 0)
+{
+	canBeDamagedTimer--;
+}
+
+/*function InstaKill()
 {
 	playerHealth = 0;
-}
+}*/
 
 //Unstuck Player(Cheat)
 if(keyboard_check_pressed(ord("U")))
@@ -41,6 +43,9 @@ if(keyboard_check_pressed(ord("U")))
 }
 #endregion
 
+if(isAlive)
+{
+#region MOVEMENT
 #region Move
 if(isMoving = true)
 {
@@ -84,29 +89,28 @@ if(isMoving = true)
 #region Jump
 if(keyboard_check_pressed(vk_space) && (isGrounded = true || isJumpMercy = true))
 {
-	ysp = -jumpPower;
+	audio_play_sound(Carton_Jump, 1, false);
+	ysp = -jumpPower //max jump power
 }
 else
 {
-	yPrev = y;
+	yPrev = y
 }
 
 if(ysp < 0 && !keyboard_check(vk_space) && isDashing = false)
 {
-	// You kept HEAD version, this is correct
-	ysp = max(ysp, -jumpPower/2.5); 
+	ysp = max(ysp, -jumpPower/2.5); //If let go of space, ysp will not be -2.5
 }
 #endregion
 
 #region Dash and Shooting
-if ((keyboard_check_pressed(ord("X")) 
-	|| keyboard_check_pressed(ord("M")) 
-	|| keyboard_check_pressed(vk_lshift))
-	&& canDash = true
-	&& isDashing = false 
-	&& dashCooldown <= 0)
+if ((keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("M")) || keyboard_check_pressed(vk_lshift)))
+&& isDashing = false 
+&& dashCooldown <= 0 // ← NEW: only dash if NOT cooling down
 {
-	dashCooldown = dashCooldownMax;
+	image_yscale = 0.6;
+	audio_play_sound(Big_Water_Splash_Sound_Effects, 0, false);
+	dashCooldown = dashCooldownMax; // start cooldown
 
 	xsp = 0;
 	ysp = 0;
@@ -114,8 +118,9 @@ if ((keyboard_check_pressed(ord("X"))
 	isShooting = true;
 	isDashing = true;
 
-	DashTimer = 4;
-	dashAnimTimer = 15;
+	layer_set_visible("Effect_ScreenShake", true); //Apply Screen Shake Layer
+	DashTimer = 4; //how long the steps to dash, less means more faster but much shorter
+	dashAnimTimer = 15; //dash Animation
 
 	if keyboard_check(ord("D")) || keyboard_check(vk_right) || keyboard_check(ord("J"))
 	{
@@ -137,9 +142,15 @@ if ((keyboard_check_pressed(ord("X"))
 	if keyboard_check(ord("W")) || keyboard_check(vk_up) || keyboard_check(ord("K"))
 	{
 		isKeyPress = true;
-		if(keyboard_check(vk_space)) ysp = -dashPower / 2.5;
-		else ysp = -dashPower;
-		
+		if(keyboard_check(vk_space))
+		{
+			ysp = -dashPower / 2.5;
+		}
+		else
+		{
+			ysp = -dashPower;
+		}
+
 		bulletDirectionY = 1;
 
 		if(isDashRight = true)
@@ -158,8 +169,14 @@ if ((keyboard_check_pressed(ord("X"))
 	else if keyboard_check(ord("S")) || keyboard_check(vk_down) || keyboard_check(ord("I"))
 	{
 		isKeyPress = true;
-		if(keyboard_check(vk_space)) ysp = dashPower / 2.5;
-		else ysp = dashPower;
+		if(keyboard_check(vk_space))
+		{
+			ysp = dashPower / 2.5;
+		}
+		else
+		{
+			ysp = dashPower;
+		}
 		
 		bulletDirectionY = -1;
 		
@@ -195,8 +212,12 @@ if(isShooting = true)
 
 if isDashing = true
 {
-	DashTimer--;
-	if DashTimer <= 0 isDashing = false;
+	DashTimer--
+	if DashTimer <= 0
+	{
+		image_yscale = 1;
+		isDashing = false
+	}
 }
 
 if(dashAnimTimer > 0) dashAnimTimer--;
@@ -254,7 +275,65 @@ function JumpMercy()
 #endregion
 
 #region ANIMATION
-if (dashAnimTimer > 0)
+    if (dashAnimTimer > 0)
+    {
+        if (keyboard_check(ord("W")) || keyboard_check(vk_up))
+        {
+            if (keyboard_check(ord("D")) || keyboard_check(vk_right))
+                sprite_index = sPlayerDashRightUp;
+            else if (keyboard_check(ord("A")) || keyboard_check(vk_left))
+                sprite_index = sPlayerDashLeftUp;
+            else
+                sprite_index = sPlayerDashUp;
+        }
+        else if (keyboard_check(ord("S")) || keyboard_check(vk_down))
+        {
+            if (keyboard_check(ord("D")) || keyboard_check(vk_right))
+                sprite_index = sPlayerDashRightDown;
+            else if (keyboard_check(ord("A")) || keyboard_check(vk_left))
+                sprite_index = sPlayerDashLeftDown;
+            else
+                sprite_index = sPlayerDashDown;
+        }
+        else if (keyboard_check(ord("D")) || keyboard_check(vk_right))
+        {
+            sprite_index = sPlayerDashRight;
+        }
+        else if (keyboard_check(ord("A")) || keyboard_check(vk_left))
+        {
+            sprite_index = sPlayerDashLeft;
+        }
+        else
+        {
+            // No key pressed → just dash forward based on facing
+            if (image_xscale == -1)
+                sprite_index = sPlayerDashLeft;
+            else
+                sprite_index = sPlayerDashRight;
+        }
+    }
+    else
+    {
+		layer_set_visible("Effect_ScreenShake", false); //Deactivate Screen Shake Layer
+        // Idle / Move
+        if (xPrev != x)
+        {
+            sprite_index = sPlayerMove;
+            image_speed = 1;
+        }
+        else
+        {
+            sprite_index = sPlayerIdle;
+        }
+
+        // Jump
+        if (isGrounded = false)
+        {
+            sprite_index = sPlayerJump;
+        }
+    }
+
+/*if (dashAnimTimer > 0)
 {
 	if (keyboard_check(ord("W")) || keyboard_check(vk_up))
 	{
@@ -298,7 +377,7 @@ else
 	else sprite_index = sPlayerIdle;
 
 	if (isGrounded = false) sprite_index = sPlayerJump;
-}
+}*/
 #endregion
 
 #region Knockback
@@ -322,8 +401,8 @@ else
 	isMoving = true;
 	knocbacker = 0;
 }
-#endregion
 }
+#endregion
 else
 {
 	sprite_index = sDead;
@@ -337,11 +416,14 @@ else
 		var vh = camera_get_view_height(view_camera[0]);
 		
 		isGameOver = true;
-		instance_create_layer(vx + vw/2, vy + vh/2, "Instances_UI", oGameOver);
+
+		instance_create_layer(vx + vw/2, vy +vh/2, "Instances_UI", oGameOver);	
+		oCamera.target = oGameOver;
 	}
 	
 	if(keyboard_check_pressed(vk_anykey))
 	{
+		oCamera.target = oPlayer;
 		isGameOver = false;
 		room_restart();
 	}
@@ -365,5 +447,5 @@ show_prompt = (instance_place(x, y, oExitDoor) != noone)
 
 if (show_prompt && keyboard_check_pressed(ord("G")))
 {
-    room_goto_next();
+    dashCooldown--;
 }
