@@ -401,8 +401,8 @@ else
 	isMoving = true;
 	knocbacker = 0;
 }
-#endregion
 }
+#endregion
 else
 {
 	sprite_index = sDead;
@@ -423,6 +423,7 @@ else
 	
 	if(keyboard_check_pressed(vk_anykey))
 	{
+		oCamera.target = oPlayer;
 		isGameOver = false;
 		room_restart();
 	}
