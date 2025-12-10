@@ -434,6 +434,7 @@ if (place_meeting(x, y, oGems)) {
     var gem = instance_place(x, y, oGems);
     gemCount += 1;
     with (gem) instance_destroy();
+	audio_play_sound(Gem_Collection,0,false);
 }
 #endregion
 

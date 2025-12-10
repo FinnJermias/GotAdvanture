@@ -47,6 +47,7 @@
     {"name":"_356_8_bit_chiptune_game_music_357518","order":3,"path":"sounds/_356_8_bit_chiptune_game_music_357518/_356_8_bit_chiptune_game_music_357518.yy",},
     {"name":"Big_Water_Splash_Sound_Effects","order":1,"path":"sounds/Big_Water_Splash_Sound_Effects/Big_Water_Splash_Sound_Effects.yy",},
     {"name":"Carton_Jump","order":2,"path":"sounds/Carton_Jump/Carton_Jump.yy",},
+    {"name":"Gem_Collection","order":4,"path":"sounds/Gem_Collection/Gem_Collection.yy",},
     {"name":"sBackGround","order":36,"path":"sprites/sBackGround/sBackGround.yy",},
     {"name":"sBackGroundLight","order":38,"path":"sprites/sBackGroundLight/sBackGroundLight.yy",},
     {"name":"sBackGroundLightCon","order":39,"path":"sprites/sBackGroundLightCon/sBackGroundLightCon.yy",},

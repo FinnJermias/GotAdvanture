@@ -21,7 +21,9 @@
     {"$GMFolder":"","%Name":"Sprites","folderPath":"folders/Sprites.yy","name":"Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"sPlayer","folderPath":"folders/Sprites/sPlayer.yy","name":"sPlayer","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
-  "ForcedPrefabProjectReferences":[],
+  "ForcedPrefabProjectReferences":[
+    {"link":"io.gamemaker.gm_filter_screenshake-1.0.0","name":"io.gamemaker.gm_filter_screenshake-1.0.0","path":"io.gamemaker.gm_filter_screenshake-1.0.0.yyp",},
+  ],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"Big Water Splash Sound Effects.m4a","CopyToMask":-1,"filePath":"datafiles","name":"Big Water Splash Sound Effects.m4a","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Carton Jump.m4a","CopyToMask":-1,"filePath":"datafiles","name":"Carton Jump.m4a","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -29,7 +31,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.0.207",
+    "IDEVersion":"2024.14.1.210",
   },
   "name":"Gotadvanture",
   "resources":[
@@ -87,6 +89,7 @@
     {"id":{"name":"BGM___Give_Myself_To_You__Instrumental_","path":"sounds/BGM___Give_Myself_To_You__Instrumental_/BGM___Give_Myself_To_You__Instrumental_.yy",},},
     {"id":{"name":"Big_Water_Splash_Sound_Effects","path":"sounds/Big_Water_Splash_Sound_Effects/Big_Water_Splash_Sound_Effects.yy",},},
     {"id":{"name":"Carton_Jump","path":"sounds/Carton_Jump/Carton_Jump.yy",},},
+    {"id":{"name":"Gem_Collection","path":"sounds/Gem_Collection/Gem_Collection.yy",},},
     {"id":{"name":"sBackGround","path":"sprites/sBackGround/sBackGround.yy",},},
     {"id":{"name":"sBackGroundLight","path":"sprites/sBackGroundLight/sBackGroundLight.yy",},},
     {"id":{"name":"sBackGroundLightCon","path":"sprites/sBackGroundLightCon/sBackGroundLightCon.yy",},},
