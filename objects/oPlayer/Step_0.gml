@@ -416,9 +416,13 @@ else
 		var vh = camera_get_view_height(view_camera[0]);
 		
 		isGameOver = true;
-		if(global.gemCount > 0)
+		if(global.gemCount > 5)
 		{
 			global.gemCount -= 5;
+		}
+		else
+		{
+			global.gemCount = 0;
 		}
 
 		instance_create_layer(vx + vw/2, vy +vh/2, "Instances_UI", oGameOver);	
