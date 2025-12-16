@@ -416,6 +416,10 @@ else
 		var vh = camera_get_view_height(view_camera[0]);
 		
 		isGameOver = true;
+		if(global.gemCount > 0)
+		{
+			global.gemCount -= 5;
+		}
 
 		instance_create_layer(vx + vw/2, vy +vh/2, "Instances_UI", oGameOver);	
 		oCamera.target = oGameOver;
@@ -432,7 +436,7 @@ else
 #region Collect
 if (place_meeting(x, y, oGems)) {
     var gem = instance_place(x, y, oGems);
-    gemCount += 1;
+    global.gemCount += 1;
     with (gem) instance_destroy();
 	audio_play_sound(Gem_Collection,0,false);
 }

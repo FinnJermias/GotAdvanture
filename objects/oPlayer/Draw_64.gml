@@ -7,7 +7,7 @@ draw_rectangle_colour(20, 20, 20 + (200 * hpPerc), 40, c_green, c_green, c_green
 
 // HP text
 draw_set_colour(c_white);
-draw_text(25, 45, "HP: " + string(playerHealth));
+draw_text(30, 40, "HP: " + string(playerHealth));
 
 // DASH COOLDOWN BAR
 var perc = 1 - (dashCooldown / dashCooldownMax);
@@ -20,11 +20,11 @@ draw_rectangle_colour(20, 80, 20 + (200 * perc), 100, c_aqua, c_aqua, c_aqua, c_
 
 // text
 if (dashCooldown > 0)
-    draw_text(25, 100, "Dash Cooldown");
+    draw_text(30, 100, "Dash Cooldown");
 else
-    draw_text(25, 100, "Dash Ready!");
+    draw_text(30, 100, "Dash Ready!");
 
 draw_sprite_ext(sGems, 0, 10, 150, 2, 2, 0, c_white, 1);
 
 draw_set_font(Big);// use your large font
-draw_text(10 + sprite_get_width(sGems) * 2 + 6, 175, "x" + string(gemCount));
+draw_text(10 + sprite_get_width(sGems) * 2 + 6, 175, "x" + string(global.gemCount));
